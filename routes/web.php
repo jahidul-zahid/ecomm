@@ -70,16 +70,19 @@ Route::group(['middleware' => 'admin'], function() {
 
     Route::get('/admin/products/add', [ProductController::class, 'addproduct'])->name('add-products');
     Route::post('/admin/products/store', [ProductController::class, 'storeproduct'])->name('store-products');
-
-
-
-
+    Route::get('/admin/products/manage', [ProductController::class, 'manageproduct'])->name('manage-products');
+    Route::get('admin/products/edit/{product_id}', [ProductController::class, 'editproduct']);
+    Route::post('/admin/products/update', [ProductController::class, 'updateproduct'])->name('update-products');
+    Route::post('/admin/products/image-update', [ProductController::class, 'updateimage'])->name('update-image');
+    Route::get('admin/products/delete/{product_id}', [ProductController::class, 'destroy']);
+    Route::get('admin/products/inactive/{product_id}', [ProductController::class, 'inactive']);
+    Route::get('admin/products/active/{product_id}', [ProductController::class, 'active']);
 
 });
 
 
 //  *********************admin route**************
-//****** *category section********
+
 
 
 

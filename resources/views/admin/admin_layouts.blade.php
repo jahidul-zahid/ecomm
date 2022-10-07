@@ -103,8 +103,8 @@
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{route('add-products')}}" class="nav-link  @yield(' Add products')">Add products</a></li>
-          <li class="nav-item"><a href="chart-flot.html" class="nav-link  @yield('')">Manage Products</a></li>
+          <li class="nav-item"><a href="{{route('add-products')}}" class="nav-link  @yield(' add-products')">Add products</a></li>
+          <li class="nav-item"><a href="{{route('manage-products')}}" class="nav-link  @yield('manage-products')">Manage Products</a></li>
 
         </ul>
 
