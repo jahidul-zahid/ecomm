@@ -110,12 +110,24 @@
 
 
 
+        <a href="{{route('admin.coupon')}}" class="sl-menu-link @yield('coupon')">
+            <div class="sl-menu-item">
+              <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+              <span class="menu-item-label">Coupon</span>
+            </div><!-- menu-item -->
+          </a><!-- sl-menu-link -->
 
-        <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="blank.html" class="nav-link"></a></li>
-          <li class="nav-item"><a href="page-signin.html" class="nav-link">Signin Page</a></li>
 
-        </ul>
+          <a href="{{route('admin.orders')}}" class="sl-menu-link @yield('orders')">
+            <div class="sl-menu-item">
+              <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+              <span class="menu-item-label">Orders</span>
+            </div><!-- menu-item -->
+          </a><!-- sl-menu-link -->
+
+
+
+
       </div><!-- sl-sideleft-menu -->
 
       <br>

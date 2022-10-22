@@ -7,6 +7,14 @@ use App\Http\Controllers\fontendController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Admin\OrdersController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,13 +26,20 @@ use App\Http\Controllers\Admin\ProductController;
 |
 */
 
- /*Route::get('/', function () {
-    return view('welcome');
+ Route::get('login', function () {
+    return view('auth.login');
 });
-*/
+
+
 
 
 Route::get('/', [FontendController::class, 'index'])->name('');
+
+Route::group(['middleware' => 'auth'], function() {
+
+    Route::get('/user', [FontendController::class, 'index'])->name('');
+
+});
 
 
 Route::get('/dashboard', function () {
@@ -78,16 +93,62 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('admin/products/inactive/{product_id}', [ProductController::class, 'inactive']);
     Route::get('admin/products/active/{product_id}', [ProductController::class, 'active']);
 
+
+//  *********************admin coupon**************
+
+
+    Route::get('/admin/coupon', [CouponController::class, 'index'])->name('admin.coupon');
+    Route::post('/admin/coupon-store', [CouponController::class, 'store'])->name('store.coupon');
+    Route::get('admin/coupon/edit/{coupon_id}', [CouponController::class, 'Edit']);
+    Route::post('/admin/coupons/update', [CouponController::class, 'updatecoupon'])->name('update.coupon');
+    Route::get('admin/coupon/delete/{Coupon_id}', [CouponController::class, 'destroy']);
+
+
+    Route::get('/admin/orders', [OrdersController::class, 'index'])->name('admin.orders');
+    Route::get('admin/orders/view/{order_id}', [OrdersController::class, 'viewOrder']);
 });
 
 
-//  *********************admin route**************
+Route::get('my_profile', [FontendController::class, 'myprofile'])->name('my_profile');
+
+//  *********************cart**************
+
+
+Route::post('add/to-cart/{product_id}', [CartController::class, 'addToCard']);
+Route::get('cart', [CartController::class, 'cartPage']);
+Route::get('cart/destroy/{cart_id}', [CartController::class, 'destroy']);
+Route::post('cart/quantity/update/{cart_id}', [CartController::class, 'quantityupdate']);
+Route::post('coupon/apply', [CartController::class, 'applyCoupon']);
+Route::get('coupon/destroy', [CartController::class, 'Coupondestroy']);
+
+
+//  *********************wishlist**************
+
+Route::get('add/to-wishlist/{product_id}', [WishlistController::class, 'addTowish']);
+Route::get('wishlist', [WishlistController::class, 'wishpage']);
+Route::get('wishlist/destroy/{row_id}', [WishlistController::class, 'destroy']);
 
 
 
+//  ********************product details**************
+Route::get('product/details/{product_id}', [FontendController::class, 'productdetail']);
+
+//  ********************checkout**************
+Route::get('checkout', [CheckoutController::class, 'index']);
+Route::post('place/order', [OrderController::class, 'storeorder'])->name('place-order');
+Route::get('order/success', [OrderController::class, 'ordersuccess']);
 
 
 
+Route::get('place/order', [UserController::class, 'order'])->name('user.order');
+
+Route::get('user/order-view/{id}', [UserController::class, 'orderview']);
+
+//  ********************shop page**************
 
 
+Route::get('shop', [FontendController::class, 'shoppage'])->name('shop.page');
 
+
+//  ********************categorywise product show**************
+Route::get('category/product-show/{id}', [FontendController::class, 'catwiseproduct']);

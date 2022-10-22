@@ -3,8 +3,8 @@
 
 @section('content')
 
- <!-- Hero Section Begin -->
- <section class="hero hero-normal">
+  <!-- Hero Section Begin -->
+  <section class="hero hero-normal">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
@@ -52,39 +52,58 @@
     </div>
 </section>
 <!-- Hero Section End -->
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+
+
+<!-- Breadcrumb Section Begin -->
+
+
+
+
+<section class="breadcrumb-section set-bg" data-setbg="{{asset('fontend')}}/img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Order done</h2>
+                    <div class="breadcrumb__option">
+                        <a href="./index.html">Home</a>
+                        <span>Order done</span>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('password.confirm') }}">
-            @csrf
 
-            <!-- Password -->
-            <div>
-                <x-label for="password" :value="__('Password')" />
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+          <h3>
+
+            @if(session('order-complete'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{session('order-complete')}}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+              @endif
+          </h3>
+        </div>
+    </section>
+    <!-- Checkout Section End -->
 
-            <div class="flex justify-end mt-4">
-                <x-button>
-                    {{ __('Confirm') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+
+
+
+
+
+
+@endsection

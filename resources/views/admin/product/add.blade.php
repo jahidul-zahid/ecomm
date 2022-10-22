@@ -131,7 +131,7 @@
 
                       <div class="col-lg-12">
                         <div class="form-group">
-                          <label class="form-control-label"  >Short description<span class="tx-danger">*</span></label>
+                          <label class="form-control-label">Short description<span class="tx-danger">*</span></label>
                           <textarea name="short_description" id="summernote"></textarea>
 
                           @error('short_description')
